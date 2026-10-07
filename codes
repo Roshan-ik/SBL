@@ -1,0 +1,541 @@
+Demonstration of Branching Statement.
+import java.util.Scanner;
+
+class Grade
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter marks: ");
+        int marks = sc.nextInt();
+
+        switch(marks / 10)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                System.out.println("Fail");
+                break;
+
+            case 4:
+                System.out.println("Pass");
+                break;
+
+            case 5:
+                System.out.println("Second Class");
+                break;
+
+            case 6:
+                System.out.println("First Class");
+                break;
+
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+                System.out.println("Distinction");
+                break;
+
+            default:
+                System.out.println("Invalid marks");
+        }
+    }
+}
+
+Demonstration of Looping Statement.
+class Prime
+{
+    public static void main(String args[])
+    {
+        int i, j, num = 1000, flag;
+
+        for(i = 1; i <= num; i++)
+        {
+            flag = 1;
+
+            for(j = 2; j < i; j++)
+            {
+                if(i % j == 0)
+                {
+                    flag = 0;
+                    break;
+                }
+            }
+
+            if(flag == 1)
+            {
+                System.out.println(i);
+            }
+        }
+    }
+}
+
+area and perimeter of a rectangle using a class, object and methods.
+import java.util.Scanner;
+
+class Rectangle
+{
+    int length, breadth;
+
+    void getDim()
+    {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter length: ");
+        length = sc.nextInt();
+
+        System.out.print("Enter breadth: ");
+        breadth = sc.nextInt();
+    }
+
+    void area()
+    {
+        System.out.println("Area = " + (length * breadth));
+    }
+
+    void perimeter()
+    {
+        System.out.println("Perimeter = " + (2 * (length + breadth)));
+    }
+
+    public static void main(String args[])
+    {
+        Rectangle r = new Rectangle();
+
+        r.getDim();
+        r.area();
+        r.perimeter();
+    }
+}
+
+
+Practical 4 — Method Overloading
+class Shapes
+{
+    void area(int a)
+    {
+        System.out.println("Area of Square = " + (a * a));
+    }
+
+    void area(int l, int b)
+    {
+        System.out.println("Area of Rectangle = " + (l * b));
+    }
+
+    void area(int b, int h, int x)
+    {
+        System.out.println("Area of Triangle = " + (b * h / 2));
+    }
+
+    public static void main(String args[])
+    {
+        Shapes s = new Shapes();
+
+        s.area(5);
+        s.area(10, 5);
+        s.area(10, 6, 1);
+    }
+}
+
+
+Constructor Overloading
+class Complex
+{
+    int real, imaginary;
+
+    Complex()
+    {
+        real = 0;
+        imaginary = 0;
+    }
+
+    Complex(int r, int i)
+    {
+        real = r;
+        imaginary = i;
+    }
+
+    void show()
+    {
+        System.out.println(real + " + " + imaginary + "i");
+    }
+
+    Complex sum(Complex A, Complex B)
+    {
+        Complex C = new Complex();
+
+        C.real = A.real + B.real;
+        C.imaginary = A.imaginary + B.imaginary;
+
+        return C;
+    }
+
+    public static void main(String args[])
+    {
+        Complex A = new Complex(5, 3);
+        Complex B = new Complex(4, 2);
+        Complex C = new Complex();
+
+        C = C.sum(A, B);
+
+        System.out.print("First Complex Number: ");
+        A.show();
+
+        System.out.print("Second Complex Number: ");
+        B.show();
+
+        System.out.print("Addition: ");
+        C.show();
+    }
+}
+
+
+Demonstration of 2D-Array.
+import java.util.Scanner;
+
+class Matrix
+{
+    int a[][], b[][], sum[][], t[][];
+    int r, c, i, j;
+
+    void read()
+    {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter no. of rows and columns:");
+        r = sc.nextInt();
+        c = sc.nextInt();
+
+        a = new int[r][c];
+        b = new int[r][c];
+
+        System.out.println("Enter First Matrix:");
+
+        for(i = 0; i < r; i++)
+        {
+            for(j = 0; j < c; j++)
+            {
+                a[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("Enter Second Matrix:");
+
+        for(i = 0; i < r; i++)
+        {
+            for(j = 0; j < c; j++)
+            {
+                b[i][j] = sc.nextInt();
+            }
+        }
+    }
+
+    void addition()
+    {
+        sum = new int[r][c];
+
+        for(i = 0; i < r; i++)
+        {
+            for(j = 0; j < c; j++)
+            {
+                sum[i][j] = a[i][j] + b[i][j];
+            }
+        }
+    }
+
+    void display()
+    {
+        for(i = 0; i < r; i++)
+        {
+            for(j = 0; j < c; j++)
+            {
+                System.out.print(sum[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+    }
+
+    void transpose()
+    {
+        t = new int[c][r];
+
+        for(i = 0; i < c; i++)
+        {
+            for(j = 0; j < r; j++)
+            {
+                t[i][j] = sum[j][i];
+            }
+        }
+
+        for(i = 0; i < c; i++)
+        {
+            for(j = 0; j < r; j++)
+            {
+                System.out.print(t[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static void main(String args[])
+    {
+        Matrix m = new Matrix();
+
+        m.read();
+        m.addition();
+
+        System.out.println("Addition of matrices:");
+        m.display();
+
+        System.out.println("Transpose of addition matrix:");
+        m.transpose();
+    }
+}
+
+StringBuffer Methods
+import java.util.Scanner;
+
+class Palindrome
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+
+        String str, rev;
+
+        System.out.print("Enter a string: ");
+        str = sc.nextLine();
+
+        StringBuffer str1 = new StringBuffer(str);
+
+        str1.reverse();
+
+        rev = str1.toString();
+
+        if(str.equals(rev))
+        {
+            System.out.println(str + " is a palindrome");
+        }
+        else
+        {
+            System.out.println(str + " is not a palindrome");
+        }
+    }
+}
+
+
+Multilevel Inheritance
+import java.util.Scanner;
+
+class Circle
+{
+    float radius;
+
+    void getRadius()
+    {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter radius: ");
+        radius = sc.nextFloat();
+    }
+}
+
+class Area extends Circle
+{
+    float area;
+
+    void calculateArea()
+    {
+        area = 3.14f * radius * radius;
+    }
+}
+
+class Volume extends Area
+{
+    void calculateVolume()
+    {
+        float volume;
+
+        volume = (4.0f / 3.0f) * 3.14f * radius * radius * radius;
+
+        System.out.println("Area of Circle = " + area);
+        System.out.println("Volume of Sphere = " + volume);
+    }
+
+    public static void main(String args[])
+    {
+        Volume v = new Volume();
+
+        v.getRadius();
+        v.calculateArea();
+        v.calculateVolume();
+    }
+}
+
+
+Demonstration of Interface
+import java.util.Scanner;
+
+class Student
+{
+    int roll_no;
+
+    void getnumber()
+    {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Roll No: ");
+        roll_no = sc.nextInt();
+    }
+
+    void putnumber()
+    {
+        System.out.println("Roll No: " + roll_no);
+    }
+}
+
+class test extends Student
+{
+    float sem1, sem2;
+
+    void getmarks()
+    {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Sem 1 marks: ");
+        sem1 = sc.nextFloat();
+
+        System.out.print("Enter Sem 2 marks: ");
+        sem2 = sc.nextFloat();
+    }
+
+    void putmarks()
+    {
+        System.out.println("Sem 1 Marks: " + sem1);
+        System.out.println("Sem 2 Marks: " + sem2);
+    }
+}
+
+interface sports
+{
+    float score = 10;
+
+    void putscore();
+}
+
+class Result extends test implements sports
+{
+    float total;
+
+    void display()
+    {
+        total = sem1 + sem2 + score;
+
+        putnumber();
+        putmarks();
+        putscore();
+
+        System.out.println("Total Marks: " + total);
+    }
+
+    public void putscore()
+    {
+        System.out.println("Sports Grace Marks: " + score);
+    }
+
+    public static void main(String args[])
+    {
+        Result r = new Result();
+
+        r.getnumber();
+        r.getmarks();
+        r.display();
+    }
+}
+
+
+Create User-Defined Exception
+class OddException extends Exception
+{
+    int num;
+
+    OddException(int x)
+    {
+        num = x;
+    }
+
+    public String toString()
+    {
+        return "Number " + num + " is odd. Number must be even.";
+    }
+}
+
+class MyExceptionDemo
+{
+    static void OddNoException(int x) throws OddException
+    {
+        if(x % 2 != 0)
+        {
+            throw new OddException(x);
+        }
+        else
+        {
+            System.out.println("Square = " + (x * x));
+        }
+    }
+
+    public static void main(String args[])
+    {
+        try
+        {
+            OddNoException(3);
+        }
+        catch(OddException e)
+        {
+            System.out.println(e);
+        }
+    }
+}
+
+
+Demonstration of Multithreading
+class Thread1 implements Runnable
+{
+    public void run()
+    {
+        for(int i = 1; i <= 10; i++)
+        {
+            System.out.println("Number: " + i);
+        }
+    }
+}
+
+class Thread2 implements Runnable
+{
+    public void run()
+    {
+        for(int i = 1; i <= 10; i++)
+        {
+            System.out.println("Square: " + (i * i));
+        }
+    }
+}
+
+class multithread
+{
+    public static void main(String args[])
+    {
+        Thread1 obj1 = new Thread1();
+        Thread2 obj2 = new Thread2();
+
+        Thread t1 = new Thread(obj1);
+        Thread t2 = new Thread(obj2);
+
+        t1.start();
+        t2.start();
+    }
+}
